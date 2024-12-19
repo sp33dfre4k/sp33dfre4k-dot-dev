@@ -4,9 +4,9 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout title='sp33dfre4k'>
-	<div class="flex flex-col items-center justify-center h-screen gap-y-8">
+	<div class="flex flex-col items-center justify-center h-screen w-screen gap-y-8">
 		<h1 class="text-4xl font-bold"><span>sp33d</span><span class="text-teal-400">fre4k</span></h1>
-		<div id="sculpture-container" class="sm:flex w-[500px] h-[500px] border border-slate-400 rounded-lg"></div>
+		<div id="sculpture-container" class="flex w-[250px] h-[250px] sm:w-[500px] sm:h-[500px] border border-slate-400 rounded-lg items-center justify-center"></div>
 	</div>
 </Layout>
 
@@ -17,9 +17,14 @@ import Layout from '../layouts/Layout.astro';
 	const sculptureContainer = document.getElementById('sculpture-container');
 
 	const scene = new THREE.Scene();
-	const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+	let camera: THREE.PerspectiveCamera;
+	
+	if (sculptureContainer) {
+		camera = new THREE.PerspectiveCamera(75, sculptureContainer.clientWidth / sculptureContainer.clientHeight, 0.1, 1000);
+	}
+
 	const renderer = new THREE.WebGLRenderer({ alpha: true });
-	renderer.shadowMap.enabled = true; // Enable shadow maps
+	renderer.shadowMap.enabled = true;
 	
 	if (sculptureContainer) {
 		renderer.setSize(sculptureContainer.clientWidth, sculptureContainer.clientHeight);
@@ -30,7 +35,7 @@ import Layout from '../layouts/Layout.astro';
 	const geometry = new THREE.BoxGeometry(2, 2, 2);
 	const material = new THREE.MeshStandardMaterial({ color: 0x4ee4e4 });
 	const cube = new THREE.Mesh(geometry, material);
-	cube.castShadow = true; // Enable shadow casting for the cube
+	cube.castShadow = true;
 
 	scene.add(cube);
 
