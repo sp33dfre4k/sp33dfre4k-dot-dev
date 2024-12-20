@@ -60,24 +60,21 @@ const {twitter, github} = {
 
 	scene.add(cube);
 
-	// Add edges to the cube
 	const edges = new THREE.EdgesGeometry(geometry);
 	const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0xffffff }));
 	scene.add(line);
 
-	// Add a plane to receive shadows
 	const planeGeometry = new THREE.PlaneGeometry(10, 10);
 	const planeMaterial = new THREE.ShadowMaterial({ opacity: 0.5 });
 	const plane = new THREE.Mesh(planeGeometry, planeMaterial);
 	plane.rotation.x = -Math.PI / 2;
 	plane.position.y = -2;
-	plane.receiveShadow = true; // Enable shadow receiving for the plane
+	plane.receiveShadow = true;
 	scene.add(plane);
 
-	// Add a light source
 	const light = new THREE.DirectionalLight(0xffffff, 1);
 	light.position.set(5, 5, 5);
-	light.castShadow = true; // Enable shadow casting for the light
+	light.castShadow = true;
 	scene.add(light);
 
 	camera.position.z = 5;
