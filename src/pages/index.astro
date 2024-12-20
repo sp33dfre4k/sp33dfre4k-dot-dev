@@ -1,6 +1,8 @@
 ---
 
 import Layout from '../layouts/Layout.astro';
+import TwitterLogo from '@astropub/icons/TwitterLogo'
+import GitHubLogo from '@astropub/icons/GitHubLogo'
 
 const {twitter, github} = {
 	twitter: 'https://twitter.com/sp33dfre4k',
@@ -14,11 +16,15 @@ const {twitter, github} = {
 			<a href="/">
 				<img src="/logo.svg" alt="Logo" class="w-8 h-8" />
 			</a>
-			<a href={twitter} class="hover:text-teal-400">Twitter</a>
-			<a href={github} class="hover:text-teal-400">GitHub</a>
+			<a href={twitter} class="group hover:text-teal-400">
+				<TwitterLogo fill="white" size="24" class="group-hover:fill-teal-400"/>
+			</a>
+			<a href={github} class="group hover:text-teal-400">
+				<GitHubLogo fill="white" size="24" class="group-hover:fill-teal-400"/>
+			</a>
 		</div>
 		<h1 class="text-4xl font-bold"><span>sp33d</span><span class="text-teal-400">fre4k</span></h1>
-		<div class="flex flex-col items-center justify-center h-full gap-y-16">
+		<div class="flex flex-col items-center justify-start h-full mt-8">
 			<div id="sculpture-container" class="flex w-[250px] h-[250px] sm:w-[500px] sm:h-[500px] border border-slate-400 rounded-lg items-center justify-center"></div>
 		</div>
 	</div>
